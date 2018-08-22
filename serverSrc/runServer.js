@@ -5,7 +5,7 @@ import jsonwebtoken from 'jsonwebtoken';
 import authRoutes from './authRoutes';
 import resolvers from './resolvers';
 
-const typeDefs = fs.readFileSync('src/serverSrc/typedefs.graphql', 'utf8');
+const typeDefs = fs.readFileSync('serverSrc/typedefs.graphql', 'utf8');
 const { HOST, PORT } = process.env;
 
 // TODO: Do we need async/await here?

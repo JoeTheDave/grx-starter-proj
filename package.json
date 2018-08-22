@@ -11,8 +11,8 @@
     "start": "concurrently --kill-others \"npm:start-dev-server\" \"npm:start-dev-client\"",
     "compile-dev-server-debug": "scripts/compile-dev-server-debug.sh",
     "debug": "npm run compile-dev-server-debug && npm run start-dev-client",
-    "build-server": "NODE_ENV=production webpack --config src/serverSrc/webpack.config.js",
-    "build-client": "NODE_ENV=production webpack --config src/clientSrc/webpack.config.js",
+    "build-server": "NODE_ENV=production webpack --config serverSrc/webpack.config.js",
+    "build-client": "NODE_ENV=production webpack --config clientSrc/webpack.config.js",
     "prebuild": "npm run clean",
     "build": "npm run build-server & npm run build-client",
     "clean": "rimraf dist && rimraf build"

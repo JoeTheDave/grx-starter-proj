@@ -2,4 +2,4 @@
 #
 
 NODE_ENV=development
-webpack-dev-server --config src/clientSrc/webpack.config.js --open
+webpack-dev-server --config clientSrc/webpack.config.js --open

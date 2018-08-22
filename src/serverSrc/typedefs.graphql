@@ -1,0 +1,25 @@
+scalar CUID
+
+type User {
+  id: CUID!
+  email: String!
+}
+
+type Customer {
+  id: CUID!,
+  firstName: String,
+  lastName: String,
+  email: String!,
+  phone: String,
+}
+
+type Query {
+  me: User
+  allUsers: [User]
+  customers: [Customer]
+}
+
+type Mutation {
+  signup (email: String!, password: String!): String
+  login (email: String!, password: String!): String
+}

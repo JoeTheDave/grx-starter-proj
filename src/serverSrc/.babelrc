@@ -1,0 +1,15 @@
+{
+  "presets": [
+    {
+      "plugins": [
+        "transform-flow-strip-types",
+        "transform-object-rest-spread",
+        "transform-es2015-modules-commonjs",
+        "transform-class-properties",
+        "transform-export-extensions",
+        "syntax-trailing-function-commas",
+      ]
+    },
+  ],
+}
+

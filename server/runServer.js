@@ -1,11 +1,9 @@
 import { ApolloServer } from 'apollo-server-hapi';
 import Hapi from 'hapi';
-import fs from 'fs';
 import jsonwebtoken from 'jsonwebtoken';
 import authRoutes from './authRoutes';
-import resolvers from './resolvers';
+import schema from './schema';
 
-const typeDefs = fs.readFileSync('server/typedefs.graphql', 'utf8');
 const { HOST, PORT } = process.env;
 
 // TODO: Do we need async/await here?
@@ -19,8 +17,7 @@ async function StartServer() {
   authRoutes(app);
 
   const server = new ApolloServer({
-    typeDefs,
-    resolvers,
+    schema,
     context: async ({ request }) => {
       const token = (request.headers.authorization || '').replace('JWT ', '');
       try {
@@ -42,14 +39,14 @@ async function StartServer() {
   try {
     await app.start();
   } catch (e) {
-    app.log(['start', 'server'], `FATAL: server.start() failed!`); // TODO: Are these logging properly
+    console.log('FAILED TO START SERVER!!!'); // eslint-disable-line no-console
   }
-
-  app.log(['start', 'server'], `Server listening at ${app.info.uri}`); // TODO: Are these logging properly
+  console.log(`Server listening at ${app.info.uri}`); // eslint-disable-line no-console
 
   process.once('SIGUSR2', async () => {
     await server.stop({ timeout: 60 * 1000 });
-    app.log(['server', 'SIGUSR2'], 'Server stopped.');
+    console.log('SERVER STOPPED'); // eslint-disable-line no-console
+
     process.kill(process.pid, 'SIGUSR2');
   });
 }

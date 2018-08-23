@@ -6,15 +6,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint .",
-    "start-dev-server": "scripts/start-dev-server.sh",
-    "start-dev-client": "scripts/start-dev-client.sh",
-    "start": "concurrently --kill-others \"npm:start-dev-server\" \"npm:start-dev-client\"",
-    "debug": "npm run compile-dev-server-debug && npm run start-dev-client",
-    "build-server": "NODE_ENV=production webpack --config server/webpack.config.js",
-    "build-client": "NODE_ENV=production webpack --config client/webpack.config.js",
-    "prebuild": "npm run clean",
-    "build": "npm run build-server & npm run build-client",
-    "clean": "rimraf dist && rimraf build"
+    "start": "scripts/start-dev-server.sh"
   },
   "dependencies": {
     "apollo-boost": "^0.1.14",
@@ -30,7 +22,6 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "bcrypt": "1.0.3",
-    "clean-webpack-plugin": "^0.1.19",
     "concurrently": "^3.6.0",
     "dotenv": "^6.0.0",
     "eslint": "^4.19.1",
@@ -47,7 +38,6 @@
     "graphql": "^0.13.2",
     "hapi": "^17.5.2",
     "hapi-webpack-plugin": "^3.0.0",
-    "html-webpack-plugin": "^3.2.0",
     "inert": "^5.1.0",
     "jsonwebtoken": "^8.3.0",
     "jss": "^9.8.6",
@@ -71,7 +61,6 @@
     "uuid": "^3.3.2",
     "webpack": "^4.12.0",
     "webpack-cli": "^3.0.8",
-    "webpack-dev-server": "^3.1.4",
     "webpack-shell-plugin": "^0.5.0"
   },
   "devDependencies": {}

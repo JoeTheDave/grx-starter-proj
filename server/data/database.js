@@ -5,11 +5,11 @@ import { flatten } from 'lodash';
 const users = [];
 
 const stripPasswords = (data) => {
-  const users = flatten([data]).map((user) => {
+  const usersList = flatten([data]).map((user) => {
     delete user.password;
     return user;
   });
-  return users.length > 1 ? users : users[0];
+  return usersList.length > 1 ? usersList : usersList[0];
 };
 
 const createUser = async (email, password) => {

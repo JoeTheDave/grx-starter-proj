@@ -14,9 +14,9 @@ module.exports = {
   globals: {
     __DEV__: false,
     __PROD__: false,
-    Raven: false,
-    NO_DEFAULT_VALUE: false,
-    jsdom: false,
+    fetch: false,
+    localStorage: false,
+    document: false,
   },
   rules: {
     // Deliberate rules

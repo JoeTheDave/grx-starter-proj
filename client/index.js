@@ -12,7 +12,7 @@ import App from './containers/App';
 import jssInstance from './jssInstance';
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:3000/graph', // Make dynamic from .env
+  uri: `http://${process.env.HOST}:${process.env.PORT}`,
 });
 
 const authLink = setContext((_, { headers }) => {

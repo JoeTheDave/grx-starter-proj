@@ -1,6 +1,6 @@
 import localCache from './localCache';
 
-const baseUrl = 'http://localhost:3000'; // TODO: make dynamic from .env
+const baseUrl = `http://${process.env.HOST}:${process.env.PORT}`;
 
 export default {
   register: (email, password) => {

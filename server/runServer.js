@@ -1,22 +1,35 @@
 import { ApolloServer } from 'apollo-server-hapi';
 import Hapi from 'hapi';
+import WebpackPlugin from 'hapi-webpack-plugin';
+import inert from 'inert';
 import jsonwebtoken from 'jsonwebtoken';
-import authRoutes from './authRoutes';
-import schema from './schema';
+import authRoutes from './hapi-routes/authRoutes';
+import staticRoutes from './hapi-routes/staticRoutes';
+import schema from './graph/schema';
 
 const { HOST, PORT } = process.env;
 
-// TODO: Do we need async/await here?
-async function StartServer() {
-  const app = Hapi.server({
-    port: PORT,
-    host: HOST,
-    routes: { cors: true },
-  });
+const hapiServer = Hapi.server({
+  port: PORT,
+  host: HOST,
+});
 
-  authRoutes(app);
+async function start() {
+  try {
+    await hapiServer.register({
+      plugin: WebpackPlugin,
+      options: './webpack.config.js',
+    });
+  } catch (error) {
+    console.error(error); // eslint-disable-line no-console
+  }
 
-  const server = new ApolloServer({
+  await hapiServer.register(inert); // service of static files
+
+  staticRoutes(hapiServer);
+  authRoutes(hapiServer);
+
+  const apolloServer = new ApolloServer({
     schema,
     context: async ({ request }) => {
       const token = (request.headers.authorization || '').replace('JWT ', '');
@@ -29,26 +42,25 @@ async function StartServer() {
     },
   });
 
-  await server.applyMiddleware({
-    app,
+  await apolloServer.applyMiddleware({
+    app: hapiServer,
     path: '/graph',
   });
 
-  await server.installSubscriptionHandlers(app.listener);
+  await apolloServer.installSubscriptionHandlers(hapiServer.listener);
 
   try {
-    await app.start();
+    await hapiServer.start();
   } catch (e) {
     console.log('FAILED TO START SERVER!!!'); // eslint-disable-line no-console
   }
-  console.log(`Server listening at ${app.info.uri}`); // eslint-disable-line no-console
+  console.log(`Server listening at ${hapiServer.info.uri}`); // eslint-disable-line no-console
 
   process.once('SIGUSR2', async () => {
-    await server.stop({ timeout: 60 * 1000 });
+    await apolloServer.stop({ timeout: 60 * 1000 });
     console.log('SERVER STOPPED'); // eslint-disable-line no-console
-
     process.kill(process.pid, 'SIGUSR2');
   });
 }
 
-StartServer();
+start();

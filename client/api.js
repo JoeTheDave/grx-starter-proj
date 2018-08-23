@@ -1,25 +1,20 @@
 import localCache from './localCache';
 
-const baseUrl = 'http://localhost:8000';
+const baseUrl = 'http://localhost:3000'; // TODO: make dynamic from .env
 
 export default {
   getPublicData: () => {
-    fetch(`${baseUrl}/public-data`, {
-      mode: 'cors',
-    })
+    fetch(`${baseUrl}/public-data`, {})
       .then((response) => response.json())
       .then((json) => console.log(json.data));
   },
   getPrivateData: () => {
-    fetch(`${baseUrl}/private-data`, {
-      mode: 'cors',
-    })
+    fetch(`${baseUrl}/private-data`, {})
       .then((response) => response.json())
       .then((json) => console.log(json));
   },
   register: (email, password) => {
     fetch(`${baseUrl}/register`, {
-      mode: 'cors',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -35,7 +30,6 @@ export default {
   },
   login: () => {
     fetch(`${baseUrl}/login`, {
-      mode: 'cors',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',

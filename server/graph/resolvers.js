@@ -1,4 +1,4 @@
-const database = require('./database');
+const database = require('../database');
 const jsonwebtoken = require('jsonwebtoken');
 require('dotenv').config(); // TODO: Can this just be imported once in index.js
 

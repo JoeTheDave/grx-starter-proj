@@ -1,14 +1,14 @@
 import jsonwebtoken from 'jsonwebtoken';
-import database from './database';
+import database from '../database';
 
 module.exports = (server) => {
-  server.route({
-    method: 'GET',
-    path: '/public-data',
-    handler: (request) => {
-      return JSON.stringify({ data: 'public data' });
-    },
-  });
+  // server.route({
+  //   method: 'GET',
+  //   path: '/public-data',
+  //   handler: (request) => {
+  //     return JSON.stringify({ data: 'public data' });
+  //   },
+  // });
 
   server.route({
     method: 'POST',

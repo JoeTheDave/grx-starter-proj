@@ -2,8 +2,8 @@
 #
 
 NODE_ENV=development
-nodemon --watch serverSrc \
+nodemon --watch server \
          -r babel-register \
          -r dotenv/config \
          -r make-promises-safe \
-         serverSrc/runServer.js
+         server/runServer.js

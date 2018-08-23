@@ -9,7 +9,6 @@
         "transform-export-extensions",
         "syntax-trailing-function-commas",
       ]
-    },
-  ],
+    }
+  ]
 }
-

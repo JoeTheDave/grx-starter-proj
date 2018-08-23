@@ -2,6 +2,6 @@
 #
 
 NODE_ENV=development
-babel serverSrc \
+babel server \
     --out-dir server-debug \
     --copy-files;

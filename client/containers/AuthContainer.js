@@ -28,12 +28,6 @@ const AuthContainer = () => (
         Logout
       </button>
     </div>
-    <button type="button" onClick={api.getPublicData}>
-      Get Public Data
-    </button>
-    <button type="button" onClick={api.getPrivateData}>
-      Get Private Data
-    </button>
   </div>
 );
 

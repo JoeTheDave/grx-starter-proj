@@ -2,10 +2,10 @@ import { ApolloServer } from 'apollo-server-hapi';
 import Hapi from 'hapi';
 import WebpackPlugin from 'hapi-webpack-plugin';
 import inert from 'inert';
-import jsonwebtoken from 'jsonwebtoken';
 import authRoutes from './hapi-routes/authRoutes';
 import staticRoutes from './hapi-routes/staticRoutes';
 import schema from './graph/schema';
+import authService from './services/auth';
 
 const { HOST, PORT } = process.env;
 
@@ -33,12 +33,8 @@ async function start() {
     schema,
     context: async ({ request }) => {
       const token = (request.headers.authorization || '').replace('JWT ', '');
-      try {
-        const decoded = jsonwebtoken.verify(token, process.env.JWT_SECRET);
-        return { user: decoded.user, authenticated: true };
-      } catch (e) {
-        return { user: null, authenticated: false };
-      }
+      const user = authService.verifyToken(token);
+      return { user, authenticated: !!user };
     },
   });
 

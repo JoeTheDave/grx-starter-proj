@@ -3,16 +3,6 @@ import localCache from './localCache';
 const baseUrl = 'http://localhost:3000'; // TODO: make dynamic from .env
 
 export default {
-  getPublicData: () => {
-    fetch(`${baseUrl}/public-data`, {})
-      .then((response) => response.json())
-      .then((json) => console.log(json.data));
-  },
-  getPrivateData: () => {
-    fetch(`${baseUrl}/private-data`, {})
-      .then((response) => response.json())
-      .then((json) => console.log(json));
-  },
   register: (email, password) => {
     fetch(`${baseUrl}/register`, {
       headers: {

@@ -50,7 +50,7 @@ module.exports = {
     'react/prop-types': [
       2,
       {
-        ignore: ['children', 'classes'],
+        ignore: ['children', 'classes', 'formValues', 'formSetters'],
       },
     ],
     'no-underscore-dangle': [

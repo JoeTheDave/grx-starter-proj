@@ -2,6 +2,7 @@ import React from 'react';
 import CustomersContainer from './CustomersContainer';
 import AuthContainer from './AuthContainer';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import authService from '../services/auth';
 
 const App = () => (
   <div>
@@ -13,6 +14,11 @@ const App = () => (
           </li>
           <li>
             <Link to="/customers">Customers</Link>
+          </li>
+          <li>
+            <a href="#" onClick={authService.logout}>
+              Logout
+            </a>
           </li>
         </ul>
 

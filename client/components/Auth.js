@@ -9,7 +9,6 @@ const styles = {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    marginLeft: 20,
   },
   inputGroup: {
     position: 'relative',

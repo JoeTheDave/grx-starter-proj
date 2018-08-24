@@ -18,6 +18,7 @@ const styles = {
   },
   navList: {
     display: 'flex',
+    padding: 0,
   },
   navItems: {
     fontSize: 22,

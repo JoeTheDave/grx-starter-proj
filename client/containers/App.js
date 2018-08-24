@@ -1,29 +1,25 @@
 import React from 'react';
+import injectSheet from 'react-jss';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+import NavBar from '../components/NavBar';
 import CustomersContainer from './CustomersContainer';
 import AuthContainer from './AuthContainer';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import authService from '../services/auth';
 
-const App = () => (
-  <div>
+const styles = {
+  appContainer: {
+    margin: 0,
+    padding: 0,
+    display: 'flex',
+    flexDirection: 'column',
+  }
+}
+
+const App = ({ classes }) => (
+  <div className={classes.appContainer}>
     <Router>
       <div>
-        <ul>
-          <li>
-            <Link to="/">Auth</Link>
-          </li>
-          <li>
-            <Link to="/customers">Customers</Link>
-          </li>
-          <li>
-            <a href="#" onClick={authService.logout}>
-              Logout
-            </a>
-          </li>
-        </ul>
-
-        <hr />
-
+        <NavBar />
         <Route exact path="/" component={AuthContainer} />
         <Route path="/customers" component={CustomersContainer} />
       </div>
@@ -31,4 +27,4 @@ const App = () => (
   </div>
 );
 
-export default App;
+export default injectSheet(styles)(App);

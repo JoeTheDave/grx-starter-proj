@@ -17,6 +17,7 @@ module.exports = {
     fetch: false,
     localStorage: false,
     document: false,
+    window: false,
   },
   rules: {
     // Deliberate rules

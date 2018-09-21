@@ -1,5 +1,6 @@
-import localStorageService from './localStorage';
-import apolloClientInstance from '../architecture/apolloClientInstance';
+import localStorageService from './localStorageService';
+import apolloClientInstance from '../architecture/graph/apolloClientInstance';
+import setAuthState from '../architecture/graph/mutations';
 
 const baseUrl = `http://${process.env.HOST}:${process.env.PORT}`;
 
@@ -16,11 +17,21 @@ const methodFactory = (action) => (email, password) => {
     }),
   })
     .then((res) => res.json())
-    .then((json) => localStorageService.set('auth-jwt', json.token));
+    .then((json) => {
+      const { token, error } = json;
+      if (error) {
+        console.log(error); // eslint-disable-line no-console
+      }
+      if (token) {
+        localStorageService.setJwtToken(json.token);
+        setAuthState(true);
+      }
+    });
 };
 
 const logout = () => {
-  localStorageService.set('auth-jwt');
+  localStorageService.setJwtToken();
+  setAuthState(false);
   apolloClientInstance.resetStore();
 };
 

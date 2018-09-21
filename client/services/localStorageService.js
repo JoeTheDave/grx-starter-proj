@@ -15,7 +15,15 @@ const get = (key) => {
   }
 };
 
+const setJwtToken = (value) => {
+  set('auth-jwt', value);
+};
+
+const getJwtToken = () => get('auth-jwt');
+
 export default {
-  get,
   set,
+  get,
+  getJwtToken,
+  setJwtToken,
 };

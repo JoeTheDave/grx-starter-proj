@@ -2,8 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { ApolloProvider } from 'react-apollo';
 import { JssProvider } from 'react-jss';
-
-import apolloClientInstance from './architecture/apolloClientInstance';
+import apolloClientInstance from './architecture/graph/apolloClientInstance';
 import jssInstance from './architecture/jssInstance';
 import App from './containers/App';
 

@@ -80,7 +80,7 @@ const styles = {
   },
 };
 
-class Auth extends Component {
+class AuthPortal extends Component {
   handleRegistrationClick = () => {
     const { email, password } = this.props.formValues;
     this.props.registrationHandler(email, password);
@@ -138,9 +138,11 @@ class Auth extends Component {
   }
 }
 
-Auth.propTypes = {
+AuthPortal.propTypes = {
   registrationHandler: PropTypes.func.isRequired,
   loginHandler: PropTypes.func.isRequired,
 };
 
-export default withFormHelper(['email', 'password'])(injectSheet(styles)(Auth));
+export default withFormHelper(['email', 'password'])(
+  injectSheet(styles)(AuthPortal),
+);

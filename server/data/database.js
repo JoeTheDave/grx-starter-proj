@@ -1,26 +1,17 @@
 import uuid from 'uuid/v1';
 import bcrypt from 'bcrypt';
-import { flatten } from 'lodash';
 
 const users = [];
 
-const stripPasswords = (data) => {
-  const usersList = flatten([data]).map((user) => {
-    delete user.password;
-    return user;
-  });
-  return usersList.length > 1 ? usersList : usersList[0];
-};
-
 const createUser = async (email, password) => {
-  const hash = await bcrypt.hash(password, 10);
+  const hash = await bcrypt.hash(password, 10); // TODO: Move auth functions to the auth service
   const user = {
     id: uuid(),
     email,
     password: hash,
   };
   users.push(user);
-  return Promise.resolve(stripPasswords(user));
+  return Promise.resolve(user);
 };
 
 const getUserById = async (id) => users.find((user) => user.id === id);

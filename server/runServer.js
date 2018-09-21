@@ -5,7 +5,7 @@ import inert from 'inert';
 import authRoutes from './hapi-routes/authRoutes';
 import staticRoutes from './hapi-routes/staticRoutes';
 import schema from './graph/schema';
-import authService from './services/auth';
+import authService from './services/authService';
 
 const { HOST, PORT } = process.env;
 

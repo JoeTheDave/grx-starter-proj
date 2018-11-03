@@ -44,4 +44,21 @@ module.exports = (server) => {
       }
     },
   });
+
+  server.route({
+    method: 'POST',
+    path: '/verifyToken',
+    handler: async (request) => {
+      try {
+        const { token } = request.payload;
+        const user = authService.verifyToken(token);
+        return JSON.stringify({ valid: !!user });
+      } catch (error) {
+        console.log(error); // eslint-disable-line no-console
+        return JSON.stringify({
+          error: 'An error occured attempting to verify a token',
+        });
+      }
+    },
+  });
 };

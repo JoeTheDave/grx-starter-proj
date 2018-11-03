@@ -2,8 +2,8 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import { Redirect } from 'react-router';
 import gql from 'graphql-tag';
-import authService from '../services/authService';
-import AuthPortal from '../components/AuthPortal';
+import authService from '../../services/authService';
+import AuthPortal from './AuthPortal';
 
 const authStatusQuery = gql`
   {

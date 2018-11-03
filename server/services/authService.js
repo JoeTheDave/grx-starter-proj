@@ -17,6 +17,7 @@ const mintToken = (user) => {
 const verifyToken = (token) => {
   try {
     const decoded = jsonwebtoken.verify(token, process.env.JWT_SECRET);
+    console.log(decoded);
     return decoded.user;
   } catch (e) {
     return null;

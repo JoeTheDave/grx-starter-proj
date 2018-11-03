@@ -38,7 +38,7 @@ UsersList.propTypes = {
   users: PropTypes.arrayOf(
     PropTypes.shape({
       // TODO: bring graphql fragment into this component and use graphql-anywhere here
-      id: PropTypes.number.isRequired,
+      id: PropTypes.string.isRequired,
       email: PropTypes.string.isRequired,
     }),
   ),

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
-import withFormHelper from '../architecture/withFormHelper';
+import withFormHelper from '../../architecture/withFormHelper';
 
 const styles = {
   mainContainer: {

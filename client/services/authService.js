@@ -35,8 +35,32 @@ const logout = () => {
   apolloClientInstance.resetStore();
 };
 
+const loginExistingToken = () => {
+  const token = localStorageService.getJwtToken();
+  if (token) {
+    fetch(`${baseUrl}/verifyToken`, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+      body: JSON.stringify({
+        token,
+      }),
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        setAuthState(json.valid);
+        if (!json.valid) {
+          localStorageService.setJwtToken();
+        }
+      });
+  }
+};
+
 export default {
   register: methodFactory('register'),
   login: methodFactory('login'),
   logout,
+  loginExistingToken,
 };

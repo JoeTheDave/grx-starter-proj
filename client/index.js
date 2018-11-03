@@ -4,7 +4,7 @@ import { ApolloProvider } from 'react-apollo';
 import { JssProvider } from 'react-jss';
 import apolloClientInstance from './architecture/graph/apolloClientInstance';
 import jssInstance from './architecture/jssInstance';
-import App from './containers/App';
+import App from './components/App';
 
 const content = (
   <ApolloProvider client={apolloClientInstance}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import CustomersList from '../components/CustomersList';
+import CustomersList from './CustomersList';
 
 const customersQuery = gql`
   {
@@ -14,7 +14,7 @@ const customersQuery = gql`
   }
 `;
 
-const CustomersContainer = () => (
+const CustomersListContainer = () => (
   <Query query={customersQuery}>
     {({ loading, error, data }) => {
       if (loading) return <div>Fetching</div>;
@@ -25,4 +25,4 @@ const CustomersContainer = () => (
   </Query>
 );
 
-export default CustomersContainer;
+export default CustomersListContainer;
